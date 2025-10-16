@@ -32,7 +32,9 @@ class DatabaseManagement:
         finally:
             cursor.close()
 
-        def close_pool(self):
-            if self.connection:
-                self.connection.close()
-                print("closed SQLite connection")
+    def close_pool(self):
+        if self.connection:
+            self.connection.close()
+            print("closed SQLite connection")
+
+db_conn = DatabaseManagement("US_zipcodes.db")
