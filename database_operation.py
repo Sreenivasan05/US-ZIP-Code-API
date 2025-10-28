@@ -1,6 +1,6 @@
 import sqlite3
 import os, json
-from contextlib import contextmanager
+
 
 
 class DatabaseManagement:
@@ -131,6 +131,30 @@ def get_counties_name(state_name:str,offset:int,curr):
     if row and row["county_name"]:
         counties = json.loads(row["county_name"])
     return {state_name.capitalize(): counties}
+
+def get_zipcode_location(zip:int,curr):
+    curr.execute("""SELECT latitude,longitude from zipcodes where postal_code = ?""",(zip,))
+    loc = curr.fetchone()
+    return loc
+
+def get_nearby_location(lat_start, lat_end,long_start,long_end,curr):
+    curr.execute("""
+    SELECT
+    postal_code, 
+	initcap(place_name) as place_name,
+	initcap(state_name) as state_name,
+	state_code,
+	initcap(county_name) as county_name,
+	county_code,
+	latitude, longitude 
+
+    FROM zipcodes
+    WHERE latitude BETWEEN ? AND ?
+    AND
+    longitude BETWEEN ? AND ?;
+    """,(lat_start,lat_end,long_start,long_end))
+    data = curr.fetchall()
+    return data
 
 
 db_conn = DatabaseManagement("US_zipcodes.db")
