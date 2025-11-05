@@ -27,14 +27,18 @@ Built with **FastAPI** and **SQLite**, it’s lightweight, fast, and perfect for
 
 ## 📘 API Summary
 
+### 📍 API Endpoints Overview
+
 | Endpoint | Method | Description |
 |-----------|---------|-------------|
-| `/zipcode/{zip_code}` | GET | Retrieve ZIP code information |
-| `/states` | GET | List all US states |
-| `/counties/{state}` | GET | List counties for a state |
-| `/validate/{zip_code}` | GET | Validate a ZIP code |
-| `/distance` | GET | Calculate distance between ZIPs or coordinates |
-| `/nearby` | GET | Find nearby ZIP codes |
+| `/zipcode/{zip_code}` | GET | Retrieve detailed information for a specific ZIP code. |
+| `/states` | GET | Retrieve a list of all U.S. states including the District of Columbia. |
+| `/counties?state={state_name}&page={page_number}` | GET | Retrieve all counties within a given U.S. state. |
+| `/zipcode/{zip_code}/validate` | GET | Validate whether a ZIP code exists in the database. |
+| `/calculate_distance?latitude1={lat1}&longitude1={lon1}&latitude2={lat2}&longitude2={lon2}` | GET | Calculate distance between two geographic coordinates. |
+| `/zipcode_distance?zipcode1={zip1}&zipcode2={zip2}` | GET | Calculate distance between two ZIP codes. |
+| `/nearby_location?latitude={lat}&longitude={lon}` | GET | Retrieve nearby ZIP codes based on a given latitude and longitude. |
+| `/nearby_zipcodes/{zip_code}` | GET | Retrieve ZIP codes located near the specified ZIP code. |
 
 ---
 
