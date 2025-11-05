@@ -156,5 +156,4 @@ def get_nearby_location(lat_start, lat_end,long_start,long_end,curr):
     data = curr.fetchall()
     return data
 
-
 db_conn = DatabaseManagement("US_zipcodes.db")
